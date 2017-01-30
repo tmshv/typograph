@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: python server.py
+    volumes:
+      - /var/log/typograph:/var/log
+    ports:
+      - '3100:5000'
