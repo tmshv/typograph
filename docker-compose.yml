@@ -6,4 +6,5 @@ services:
     volumes:
       - /var/log/typograph:/var/log
     ports:
-      - '3100:5000'
+      - '127.0.0.1:3100:5000'
+
