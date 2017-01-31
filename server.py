@@ -26,7 +26,11 @@ def get_unicode(data, e='utf-8'):
 
 @app.route('/', methods=['POST'])
 def main():
-    ip = request.remote_addr
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        ip = request.remote_addr
+
     content_type, attrs = cgi.parse_header(request.headers['content-type'])
     if content_type.startswith('text/plain'):
         e = attrs['charset'] if 'charset' in attrs else 'utf-8'
